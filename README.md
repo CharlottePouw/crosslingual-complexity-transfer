@@ -3,7 +3,7 @@ Repository for the paper "Cross-lingual Transfer of Cognitive Processing Complex
 
 # Structure
 
-## `analyses`
+## `analysis`
 This folder contains notebooks to analyse the data and to plot the results.
 
 ## `data`
