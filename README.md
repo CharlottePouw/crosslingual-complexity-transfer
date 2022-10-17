@@ -36,9 +36,10 @@ python scripts/finetune_sentence_level.py --run_name train-xlm --data_dir data/e
 ```
 To evaluate the model on any language from MECO, place the file `test.csv` corresponding to the language of interest in the `train_test` folder (e.g. `data/meco/files_per_language/Dutch/test.csv). The parameter `--do_eval_only` loads the trained model and evaluates it on the MECO test data.
 ```
-python scripts/finetune_sentence_level.py --run_name eval-meco-English --data_dir data/eyetracking/meco/files_per_language/English --out_dir out --model_name models/xlm-trained --experiment_name eval-meco-English --pooling_strategy mean --label_columns scaled_first_pass_dur scaled_fix_count scaled_tot_fix_dur scaled_tot_regr_from_dur --do_eval_only --folds 5 --train_mode regression
+python scripts/finetune_sentence_level.py --run_name eval-meco-English --data_dir data/eyetracking/meco/files_per_language/English --model_name models/xlm-trained --experiment_name eval-meco-English --pooling_strategy mean --label_columns scaled_first_pass_dur scaled_fix_count scaled_tot_fix_dur scaled_tot_regr_from_dur --do_eval_only --folds 5 --train_mode regression
 ```
-To probe the linguistic knowledge that is encoded in the model's representations, the same script can be used. In this case, the encoder model should be frozen using the parameter `--freeze_model`, so that only the final regression layer is fine-tuned. The following command probes the linguistic feature "lexical density", using the first fold of the English PUD data:
+To probe the linguistic knowledge that is encoded in the model's representations, the same script can be used. In this case, the encoder model should be frozen using the parameter `--freeze_model`, so that only the final regression layer is fine-tuned. The following command probes the linguistic feature "lexical density" in the pre-trained representations of XLM-R, using the first fold of the English PUD data:
 ```
-python scripts/finetune_sentence_level.py --freeze_model --data_dir data/pud/train_test_en/fold_0 --label_columns scaled_lexical_density --run_name probe-lexical-density --train_mode regression --folds 0 --num_train_epochs 5 --evaluate_every 0 --freeze_model
+python scripts/finetune_sentence_level.py --freeze_model --data_dir data/pud/train_test_en/fold_0 --model_name xlm-roberta-base --label_columns scaled_lexical_density --run_name probe-lexical-density --train_mode regression --folds 0 --num_train_epochs 5 --evaluate_every 0 --freeze_model
 ```
+To probe linguistic features in the representations of a trained model, use the path to the trained model as `--model_name`.
