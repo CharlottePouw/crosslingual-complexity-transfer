@@ -34,7 +34,7 @@ Once all data has been preprocessed, it can be used to finetune XLM-RoBERTa (or 
 ```
 python scripts/finetune_sentence_level.py --run_name train-xlm --data_dir data/eyetracking/geco/train_test --save_dir models/xlm-trained --model_name xlm-roberta-base --experiment_name eval-xlm-geco-5fold --pooling_strategy mean --label_columns scaled_first_pass_dur scaled_fix_count scaled_tot_fix_dur scaled_tot_regr_from_dur --folds 5 --num_train_epochs 15 --evaluate_every 40 --patience 5 --train_mode regression
 ```
-To evaluate the model on any language from MECO, place the file ctest.csv` corresponding to the language of interest in the `train_test` folder (e.g. `data/meco/files_per_language/Dutch/test.csv`). The parameter `--do_eval_only` loads the trained model and evaluates it on the MECO test data.
+To evaluate the model on any language from MECO, place the file ctest.csv` corresponding to the language of interest in the `train_test` folder (e.g. `data/meco/files_per_language/Dutch/test.csv). The parameter `--do_eval_only` loads the trained model and evaluates it on the MECO test data.
 ```
 python scripts/finetune_sentence_level.py --run_name eval-meco-English --data_dir data/eyetracking/meco/files_per_language/English --out_dir out --model_name models/xlm-trained --experiment_name eval-meco-English --pooling_strategy mean --label_columns scaled_first_pass_dur scaled_fix_count scaled_tot_fix_dur scaled_tot_regr_from_dur --do_eval_only --folds 5 --train_mode regression
 ```
