@@ -1,5 +1,5 @@
 # Cross-lingual Transfer of Cognitive Processing Complexity
-Repository for the paper "Cross-lingual Transfer of Cognitive Processing Complexity". The work was carried out by Charlotte Pouw and supervised by dr. Lisa Beinborn. All experiments can be run on a single GPU in under one hour. The code for multi-task learning was adapted from https://github.com/gsarti/interpreting-complexity.
+Repository for the paper "Cross-lingual Transfer of Cognitive Processing Complexity" by Charlotte Pouw, Nora Hollenstein and Lisa Beinborn. All experiments can be run on a single GPU in under one hour. The code for multi-task learning was adapted from https://github.com/gsarti/interpreting-complexity.
 
 # Structure
 
