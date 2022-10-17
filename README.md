@@ -40,5 +40,5 @@ python scripts/finetune_sentence_level.py --run_name eval-meco-English --data_di
 ```
 To probe the linguistic knowledge that is encoded in the model's representations, the same script can be used. In this case, the encoder model should be frozen using the parameter `--freeze_model`, so that only the final regression layer is fine-tuned. The following command probes the linguistic feature "lexical density", using the first fold of the English PUD data:
 ```
-python finetune_sentence_level.py --freeze_model --data_dir ./data/pud/train_test_en/fold_0 --label_columns scaled_lexical_density --run_name probe-lexical-density --train_mode regression --folds 0 --num_train_epochs 5 --evaluate_every 0 --freeze_model
+python scripts/finetune_sentence_level.py --freeze_model --data_dir data/pud/train_test_en/fold_0 --label_columns scaled_lexical_density --run_name probe-lexical-density --train_mode regression --folds 0 --num_train_epochs 5 --evaluate_every 0 --freeze_model
 ```
