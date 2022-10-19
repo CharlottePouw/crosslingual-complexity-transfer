@@ -4,7 +4,7 @@ All experiments can be run on a single GPU in under one hour. The code for multi
 # Structure
 
 ## `analysis`
-This folder contains notebooks to analyse the data, evaluate the model predictions and plot the results. We use scikit-learn implementations for calculating R2 and explained variance. We use scipy for calculating Spearman correlations.
+This folder contains notebooks to analyze the data, evaluate the model predictions and plot the results. We use scikit-learn implementations for calculating R<sup>2</sup> and explained variance. We use scipy for calculating Spearman correlations.
 
 ## `data`
 Create a data folder with the following subfolders:
@@ -24,14 +24,14 @@ Folder for data from Parellel Universal Dependencies (Zeman et al., 2017). The C
 
 To preprocess the data, run the following scripts (which are located in the `preprocessing` folder):
 
-- meco --> first, run `extract_meco_texts.py` and subsequently run `preprocess_meco.py`
-- geco --> run `preprocess_geco.py` and subsequently run `add_ling_feats_geco.py`
-- pud --> run `preprocess_pud.py`
+- meco --> First, run `extract_meco_texts.py`. Then, calculate linguistic features for each txt file using the Profiling-UD tool (sentence-level analysis, presegmented text, http://linguistic-profiling.italianlp.it/). Download the csv file called "linguistic profile" and place it in its respective language folder (e.g. `meco/files_per_language/English`). Finally, run `preprocess_meco.py`.
+- geco --> First, run `preprocess_geco.py`. Then, write the sentences from the 'text' column in the file `preprocessed_geco_sentence_level.tsv` to a txt file (1 sentence per line). Calculate linguistic features for the file using the Profiling-UD tool and place the resulting csv file in the `geco` folder. Finally, run `add_ling_feats_geco.py`.
+- pud --> Write the sentences from each language-specific ConLL file to a txt file (1 sentence per line). Calculate linguistic features for each file using the Profiling-UD tool and place the resulting csv files in the `pud` folder. Then, run `preprocess_pud.py`.
 
 ## `scripts`
 
 - `compute_baselines.py` --> for training and testing SVM models on different subsets of structural complexity features
-- `finetune_sentence_level.py` --. for finetuning transformer models on sentence-level eye-tracking metrics using multi-task learning
+- `finetune_sentence_level.py` --> for finetuning transformer models on sentence-level eye-tracking metrics using multi-task learning
 
 # Running the code
 
