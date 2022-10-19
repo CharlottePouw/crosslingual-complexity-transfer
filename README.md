@@ -1,4 +1,4 @@
-# Title
+# Crosslingual Complexity Transfer
 All experiments can be run on a single GPU in under one hour. The code for multi-task learning was adapted from https://github.com/gsarti/interpreting-complexity.
 
 # Structure
@@ -24,7 +24,7 @@ Folder for data from Parellel Universal Dependencies (Zeman et al., 2017). The C
 
 To preprocess the data, run the following scripts (which are located in the `preprocessing` folder):
 
-- meco --> first, run `extract_meco_text.py` and subsequently run `preprocess_meco.py`
+- meco --> first, run `extract_meco_texts.py` and subsequently run `preprocess_meco.py`
 - geco --> run `preprocess_geco.py` and subsequently run `add_ling_feats_geco.py`
 - pud --> run `preprocess_pud.py`
 
