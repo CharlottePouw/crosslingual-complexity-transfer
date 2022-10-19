@@ -24,9 +24,9 @@ Folder for data from Parellel Universal Dependencies (Zeman et al., 2017). The C
 
 To preprocess the data, run the following scripts (which are located in the `preprocessing` folder):
 
-- meco --> first, run `extract_meco_texts.py` and subsequently run `preprocess_meco.py`
-- geco --> run `preprocess_geco.py` and subsequently run `add_ling_feats_geco.py`
-- pud --> run `preprocess_pud.py`
+- meco --> First, run `extract_meco_texts.py`. Then, calculate linguistic features for each txt file using the Profiling-UD tool (sentence-level analysis, presegmented text, http://linguistic-profiling.italianlp.it/). Download the csv file called "linguistic profile" and place it in its respective language folder (e.g. `meco/files_per_language/English`). Finally, run `preprocess_meco.py`.
+- geco --> First, run `preprocess_geco.py`. Then, write the sentences from the 'text' column to a txt file (1 sentence per line). Calculate linguistic features for the file using the Profiling-UD tool and place the resulting csv file in the `geco` folder. Finally, run `add_ling_feats_geco.py`
+- pud --> Calculate linguistic features for each language using the Profiling-UD tool and place the resulting csv files in the `pud` folder. Then, run `preprocess_pud.py`.
 
 ## `scripts`
 
