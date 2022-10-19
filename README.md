@@ -31,7 +31,7 @@ To preprocess the data, run the following scripts (which are located in the `pre
 ## `scripts`
 
 - `compute_baselines.py` --> for training and testing SVM models on different subsets of structural complexity features
-- `finetune_sentence_level.py` --. for finetuning transformer models on sentence-level eye-tracking metrics using multi-task learning
+- `finetune_sentence_level.py` --> for finetuning transformer models on sentence-level eye-tracking metrics using multi-task learning
 
 # Running the code
 
