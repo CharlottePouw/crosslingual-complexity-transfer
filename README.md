@@ -4,9 +4,10 @@ All experiments can be run on a single GPU in under one hour. The code for multi
 # Structure
 
 ## `analysis`
-This folder contains notebooks to analyse the data and to plot the results.
+This folder contains notebooks to analyse the data, evaluate the model predictions and plot the results. We use explained variance and R2 for evaluation using the scikit-learn implementations. We calculate Spearman correlations using scipy.
 
 ## `data`
+Create a data folder with the following subfolders:
 - `geco`
 
 Folder for data from the Ghent Eye-tracking Corpus (Cop et al., 2017). The files `MonolingualReadingData` and `EnglishReadingMaterials` should be placed in this folder and can be downloaded here: https://expsy.ugent.be/downloads/geco/
@@ -24,7 +25,7 @@ Folder for data from Parellel Universal Dependencies (Zeman et al., 2017). The C
 To preprocess the data, run the following scripts (which are located in the `preprocessing` folder):
 
 - meco --> first, run `extract_meco_text.py` and subsequently run `preprocess_meco.py`
-- geco --> run `preprocess_geco.py`
+- geco --> run `preprocess_geco.py` and subsequently run `add_ling_feats_geco.py`
 - pud --> run `preprocess_pud.py`
 
 # Running the code
