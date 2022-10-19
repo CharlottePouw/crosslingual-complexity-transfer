@@ -28,6 +28,11 @@ To preprocess the data, run the following scripts (which are located in the `pre
 - geco --> run `preprocess_geco.py` and subsequently run `add_ling_feats_geco.py`
 - pud --> run `preprocess_pud.py`
 
+## `scripts`
+
+- `compute_baselines.py` --> for training and testing SVM models on different subsets of structural complexity features
+- `finetune_sentence_level.py` --. for finetuning transformer models on sentence-level eye-tracking metrics using multi-task learning
+
 # Running the code
 
 Once all data has been preprocessed, it can be used to finetune XLM-R (or another transformer model). With the following command, the model is trained and evaluated on the English GECO data using 5-fold cross-validation and learns four eye-tracking features simultaneously (first-pass duration, fixation count, total fixation duration, regression duration):
