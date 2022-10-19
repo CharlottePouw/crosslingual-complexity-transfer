@@ -4,7 +4,7 @@ All experiments can be run on a single GPU in under one hour. The code for multi
 # Structure
 
 ## `analysis`
-This folder contains notebooks to analyse the data, evaluate the model predictions and plot the results. We use explained variance and R2 for evaluation using the scikit-learn implementations. We calculate Spearman correlations using scipy.
+This folder contains notebooks to analyse the data, evaluate the model predictions and plot the results. We use scikit-learn implementations for calculating R2 and explained variance. We use scipy for calculating Spearman correlations.
 
 ## `data`
 Create a data folder with the following subfolders:
