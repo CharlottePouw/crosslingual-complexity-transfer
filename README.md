@@ -30,7 +30,7 @@ To preprocess the data, run the following scripts (which are located in the `pre
 
 # Running the code
 
-Once all data has been preprocessed, it can be used to finetune XLM-RoBERTa (or another transformer model). With the following command, the model is trained and evaluated on the English GECO data using 5-fold cross-validation and learns four eye-tracking features simultaneously (first-pass duration, fixation count, total fixation duration, regression duration):
+Once all data has been preprocessed, it can be used to finetune XLM-R (or another transformer model). With the following command, the model is trained and evaluated on the English GECO data using 5-fold cross-validation and learns four eye-tracking features simultaneously (first-pass duration, fixation count, total fixation duration, regression duration):
 
 ```
 python scripts/finetune_sentence_level.py --run_name train-xlm --data_dir data/eyetracking/geco/train_test --save_dir models/xlm-trained --model_name xlm-roberta-base --experiment_name eval-xlm-geco-5fold --pooling_strategy mean --label_columns scaled_first_pass_dur scaled_fix_count scaled_tot_fix_dur scaled_tot_regr_from_dur --folds 5 --num_train_epochs 15 --evaluate_every 40 --patience 5 --train_mode regression
