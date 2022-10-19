@@ -1,6 +1,3 @@
-import sys
-sys.path.append('C:/Users/charl/Documents/GitHub/charlotte-pouw-crosslingual-transfer-of-linguistic-complexity/preprocessing/')
-
 import pandas as pd
 import numpy as np
 import csv
@@ -8,13 +5,13 @@ import csv
 from utils import get_avg_word_length_with_punct, get_avg_token_freq, get_n_low_freq_words, scale
 
 # Load GECO sentences and eye-tracking data
-geco_train_english = pd.read_csv('./data/geco/preprocessed/preprocessed_geco_sentence_level.tsv', sep='\t', encoding='utf8', quoting=csv.QUOTE_NONE)
+geco_train_english = pd.read_csv('data/geco/preprocessed/preprocessed_geco_sentence_level.tsv', sep='\t', encoding='utf8', quoting=csv.QUOTE_NONE)
 geco_train_english = geco_train_english[['participant', 'text_id', 'sentence_id', 'text', 'token_count',
                                          'fix_count', 'fix_prob', 'mean_fix_dur', 'first_fix_dur', 'first_pass_dur',
                                          'tot_fix_dur', 'refix_count', 'reread_prob', 'tot_regr_from_dur']]
 
 # Load corresponding linguistic features
-en_geco_train_feats = pd.read_csv('./data/geco/ling_feats.csv', sep='\t')
+en_geco_train_feats = pd.read_csv('data/geco/ling_feats.csv', sep='\t')
 en_geco_train_feats = en_geco_train_feats.drop('Filename', axis=1)
 en_geco_train_feats.reset_index(drop=True)
 

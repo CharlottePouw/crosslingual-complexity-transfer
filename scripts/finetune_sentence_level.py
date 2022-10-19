@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/home/cpouw/interpreting-complexity/src/')
-
 import argparse
 import logging
 import os
@@ -198,13 +195,6 @@ def evaluate_kfold(args, data_silo, processor):
                     for pred, label in zip(res.get("preds"), res.get("labels")):
                         preds_file.write(res['task_name'] + '\t' + str(pred) + '\t' + str(label) + '\n')
 
-        # if args.save_predictions:
-            # pred_tsv = pd.DataFrame()
-            # for res in result[1:]:
-            #     pred_tsv[f"{res['task_name']}_preds"] = res.get("preds")
-            #     pred_tsv[f"{res['task_name']}_labels"] = res.get("labels")
-            # save_tsv(pred_tsv, os.path.join(args.out_dir, f"preds_{args.experiment_name}_{num_fold}.tsv"))
-
     args.logger.info("Final results:")
     for task_name, task in dict_preds_labels.items():
         args.logger.info(f"__{task_name}__")
@@ -305,11 +295,6 @@ def finetune_sentence_level(args):
                         for pred, label in zip(res.get("preds"), res.get("labels")):
                             preds_file.write(res['task_name'] + '\t' + str(pred) + '\t' + str(label) + '\n')
 
-        #     if args.save_predictions:
-        #         pred_tsv[f"{res['task_name']}_preds"] = res.get("preds")[0]
-        #         pred_tsv[f"{res['task_name']}_labels"] = res.get("labels")[0]
-        # if args.save_predictions:
-        #     save_tsv(pred_tsv, os.path.join(args.out_dir, f"{args.run_name}.tsv"))
         # # Load trained model and perform inference
         # dicts = [
         #     {"text": "The intense interest aroused in the public has now somewhat subsided."},
@@ -406,11 +391,6 @@ def main():
     parser.add_argument("--patience", default=None, type=int, help="Patience for early stopping.")
     parser.add_argument(
         "--do_logfile", action="store_true", help="Set this flag if you want to log the current run to a file."
-    )
-    parser.add_argument(
-        "--save_predictions",
-        action="store_true",
-        help="Set this flag if you want to save labels and predictions in a tsv file.",
     )
     parser.add_argument(
         "--train_mode",

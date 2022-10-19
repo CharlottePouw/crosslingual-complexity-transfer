@@ -88,15 +88,15 @@ if __name__ == "__main__":
     parser.add_argument('--conll_path',
                         type=str,
                         help='path to conll file that contains sentences',
-                        default='./data/pud/en_pud-ud-test.conllu')
+                        default='data/pud/en_pud-ud-test.conllu')
     parser.add_argument('--feats_path',
                         type=str,
                         help='path to csv file that contains linguistic profiling features',
-                        default='./data/pud/ling_feats_pud_english.tsv')
+                        default='data/pud/ling_feats_pud_english.tsv')
     parser.add_argument('--out_dir',
                         type=str,
                         help='directory where the preprocessed data is stored',
-                        default='./data/pud')
+                        default='data/pud')
     parser.add_argument('--language',
                         type=str,
                         help='language used in the file',
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     parser.add_argument('--train_test_dir',
                         type=str,
                         help='directory where the train/test splits are stored',
-                        default='./data/pud/train_test_english')
+                        default='data/pud/train_test_english')
     args = parser.parse_args()
 
     data_path = preprocess_pud(args.conll_path, args.feats_path, args.out_dir, args.language)

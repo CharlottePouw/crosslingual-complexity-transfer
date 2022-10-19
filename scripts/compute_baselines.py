@@ -1,6 +1,3 @@
-import sys
-sys.path.append('C:/Users/charl/Documents/GitHub/charlotte-pouw-crosslingual-transfer-of-linguistic-complexity/preprocessing/')
-
 from tqdm import tqdm
 from sklearn.svm import SVR
 import sklearn.metrics as metrics
@@ -12,35 +9,6 @@ import numpy as np
 import os
 
 from utils import get_avg_word_length_with_punct, get_avg_token_freq, get_n_low_freq_words, scale
-
-
-def mean_baseline(df_train, df_test, target_label):
-
-    # Get the true values of the target eye-tracking feature (scaled between 0-100)
-    y_true_test = scale(df_test[target_label].tolist())
-    y_true_train = scale(df_train[target_label].tolist())
-
-    # Use the mean as the predicted value every time
-    y_pred = len(y_true_test) * [np.mean(y_true_train)]
-
-    # Evaluate
-    mae = metrics.mean_absolute_error(y_true_test[:5], y_pred[:5])
-    mse = metrics.mean_squared_error(y_true_test[:5], y_pred[:5])
-    rmse = np.sqrt(mse)  # or mse**(0.5)
-    r2 = metrics.r2_score(y_true_test[:5], y_pred[:5])
-
-    results = {'target': target_label,
-               'baseline_model': 'mean',
-               'mae': mae,
-               'accuracy': (100 - mae),
-               'r2': r2,
-               'mse': mse,
-               'rmse': rmse}
-
-    print(results)
-
-    return results
-
 
 def svm(df_train, df_test, target_label, setting, n_fold):
 
@@ -71,20 +39,6 @@ def svm(df_train, df_test, target_label, setting, n_fold):
     svr.fit(X_train, y_train)
     y_pred = svr.predict(X_test)
 
-    # # Evaluate
-    # mae = metrics.mean_absolute_error(y_test, y_pred)
-    # mse = metrics.mean_squared_error(y_test, y_pred)
-    # rmse = np.sqrt(mse)  # or mse**(0.5)
-    # r2 = metrics.r2_score(y_test, y_pred)
-    #
-    # results = {'target': target_label,
-    #            'baseline_model': setting,
-    #            'mae': mae,
-    #            'accuracy': (100-mae),
-    #            'r2': r2,
-    #            'mse': mse,
-    #            'rmse': rmse}
-
     preds_path = f'results/preds-{setting}-svm-{target_label}-English-{n_fold}.tsv'
 
     # Write out predictions + true values
@@ -92,7 +46,6 @@ def svm(df_train, df_test, target_label, setting, n_fold):
         for pred, label in zip(y_pred, y_test):
             preds_file.write(target_label + '\t' + str(pred) + '\t' + str(label) + '\n')
 
-    #return results
 
 def svm_kfold(args):
 
@@ -121,40 +74,6 @@ def svm_kfold(args):
                 svm(train, test, target_label, setting, fold)
         fold += 1
 
-def compute_baselines_trained_on_geco(args):
-
-    # Create GECO dataframe
-    df_train = pd.read_csv(args.geco_path, sep='\t')
-    test_language = 'English'
-
-    df_train['avg_token_freq'] = get_avg_token_freq(df_train['text'].tolist(), test_language)
-    df_train['n_low_freq_words'] = get_n_low_freq_words(df_train['text'].tolist(), test_language)
-    df_train['avg_word_length'] = get_avg_word_length_with_punct(df_train['text'].tolist())
-
-    with open(args.out_path, 'w', encoding='utf8') as outfile:
-        outfile.write('test_language,eyetracking-feature,model,mae,accuracy,r2,mse,rmse'+'\n')
-
-        for test_language in os.listdir(args.meco_path):
-
-            # read in MECO test data
-            df_test = pd.read_csv(f'{args.meco_path}/{test_language}/test.tsv', sep='\t')
-
-            # Iterate over target labels
-            for target_label in ['scaled_fix_count', 'scaled_first_pass_dur', 'scaled_tot_fix_dur', 'scaled_tot_regr_from_dur']:
-
-                # Calculate four different SVM baselines for English
-                # if test_language == 'English':
-                for setting in ['linguistic', 'length', 'frequency', 'all']:
-                    if test_language not in ['Estonian', 'Korean']:
-                        results = svm(df_train, df_test, target_label, setting, test_language)
-                        outfile.write(f'{test_language},{results["target"]},{results["baseline_model"]},{results["mae"]},{results["accuracy"]},{results["r2"]},{results["mse"]},{results["rmse"]}' + '\n')
-
-                # Calculate the mean baseline for all languages
-                mean_results = mean_baseline(df_train, df_test, target_label)
-                outfile.write(
-                    f'{test_language},{mean_results["target"]},{mean_results["baseline_model"]},{mean_results["mae"]},{mean_results["accuracy"]},{mean_results["r2"]},{mean_results["mse"]},{mean_results["rmse"]}' + '\n')
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -177,5 +96,4 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-    #compute_baselines_trained_on_geco(args)
     svm_kfold(args)

@@ -7,9 +7,6 @@ import string
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-import sys
-sys.path.append('C:/Users/charl/Documents/GitHub/charlotte-pouw-crosslingual-transfer-of-linguistic-complexity/src/')
-
 from lingcomp.data_utils import GECOProcessor
 from lingcomp.script_utils import save_tsv, train_test_split_sentences
 

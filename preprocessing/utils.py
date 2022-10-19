@@ -128,10 +128,10 @@ def scale(feature_values):
 
 
 def get_meco_df(language):
-    path = f'./data/meco/files_per_language/{language}/test.tsv'
+    path = f'data/meco/files_per_language/{language}/test.tsv'
 
     if os.path.exists(path):
-        df = pd.read_csv(f'./data/meco/files_per_language/{language}/test.tsv', sep='\t', encoding='utf8')
+        df = pd.read_csv(f'data/meco/files_per_language/{language}/test.tsv', sep='\t', encoding='utf8')
         df['dataset'] = len(df) * [f'{language}']
 
     return df
