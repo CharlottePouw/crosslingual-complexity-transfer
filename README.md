@@ -1,5 +1,12 @@
-# Crosslingual Complexity Transfer
+# Cross-Lingual Transfer of Cognitive Processing Complexity
+Repository for the Findings of EACL 2023 paper "Cross-Lingual Transfer of Cognitive Processing Complexity" by Charlotte Pouw, Nora Hollenstein and Lisa Beinborn.
+
+:page_with_curl: Paper: https://arxiv.org/abs/2302.12695
+
 All experiments can be run on a single GPU in under one hour. The code for multi-task learning was adapted from https://github.com/gsarti/interpreting-complexity.
+
+# Abstract
+When humans read a text, their eye movements are influenced by the structural complexity of the input sentences. This cognitive phenomenon holds across languages and recent studies indicate that multilingual language models utilize structural similarities between languages to facilitate cross-lingual transfer. We use sentence-level eye-tracking patterns as a cognitive indicator for structural complexity and show that the multilingual model XLM-RoBERTa can successfully predict varied patterns for 13 typologically diverse languages, despite being fine-tuned only on English data. We quantify the sensitivity of the model to structural complexity and distinguish a range of complexity characteristics. Our results indicate that the model develops a meaningful bias towards sentence length but also integrates cross-lingual differences. We conduct a control experiment with randomized word order and find that the model seems to additionally capture more complex structural information. 
 
 # Structure
 
