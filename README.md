@@ -1,7 +1,7 @@
 # Cross-Lingual Transfer of Cognitive Processing Complexity
 Repository for the Findings of EACL 2023 paper "Cross-Lingual Transfer of Cognitive Processing Complexity" by Charlotte Pouw, Nora Hollenstein and Lisa Beinborn.
 
-:page_with_curl: Paper: https://arxiv.org/abs/2302.12695
+:page_with_curl: Paper: https://aclanthology.org/2023.findings-eacl.49/
 
 All experiments can be run on a single GPU in under one hour. The code for multi-task learning was adapted from https://github.com/gsarti/interpreting-complexity.
 
